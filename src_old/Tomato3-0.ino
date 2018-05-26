@@ -258,11 +258,7 @@ void Arroser()
       TFTscreen.stroke(0,255,0);
       TFTscreen.text("Arrosage ",0 , 90);
       TFTscreen.text(tempsArrosage ,0 , 110);
-      
-     
-     
 
-   
    //On vérifie si on continue à arroser, donc si on a dépassé l'intervall d'arrosage
    if(MillisecondesEcoulees >= DUREE_ARROSAGE * NB_MILLISECONDES)
    {

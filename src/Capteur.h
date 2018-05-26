@@ -5,8 +5,8 @@ Implementation basique pour la gestion et le controle d'un capteur
 class Capteur {
     
     public:
-    Capteur(short nPinNumber);
-    Capteur(short nPinNumber, float dResistanceValue);
+    Capteur(short nPinNumber, bool bIsOut);
+    Capteur(short nPinNumber, float dResistanceValue, bool bIsOut);
 
     float GetValue();
     void loop();
@@ -18,4 +18,4 @@ class Capteur {
     float fValue;
     float fResistanceValue;
     
-}
+};
