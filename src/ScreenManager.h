@@ -1,9 +1,8 @@
 
-
 // Gère l'affichage de l'écran à l'aide d'une liste de lignes
 
 #include "General.h"
-#include <TFT.h>  // Arduino LCD library
+
 
 class ScreenManager 
 {
@@ -11,11 +10,13 @@ class ScreenManager
     ScreenManager();
     ~ScreenManager();
 
-    void UpdateDisplay();
-    void ClearDisplay();
+    void UpdateDisplay(bool bOnlyValue);
+    void ClearDisplay(bool bOnlyValue);
     void SetLine(int nIndex, char* sText);
+    void SetLine(int p_nIndex, char* sText, char* sValeur);
 
     private:
-    TFT mTFTScreen = TFT(cs, dc, rst);
+    TFT* mTFTScreen;
     char* pScreenText[MAX_LIGNES];
+    char* pScreenValeurs[MAX_LIGNES];
 };

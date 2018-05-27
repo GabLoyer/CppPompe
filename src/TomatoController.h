@@ -23,5 +23,4 @@ class TomatoController
     static SimpleTimer pStopTimer;
     static int pStopTimerId;
     
-    Capteur capteurTemp = Capteur(PIN_SOLEIL, false);
 };

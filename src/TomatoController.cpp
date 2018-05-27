@@ -26,21 +26,3 @@ void TomatoController::loop()
         pStopTimer.run();
     }
 }
-
-static void TomatoController::StartArroser()
-{
-    TomatoController::bEstEnTrainDArroser = true;
-    Serial.println("Les plantes ont soif, on arrose");
-    digitalWrite(PIN_POMPE, HIGH);
-
-    pStopTimer.enable(TomatoController::pStopTimerId);
-}
-
-static void TomatoController::StopArroser()
-{
-    TomatoController::bEstEnTrainDArroser = false;
-    Serial.println("Désactivation de la pompe ...");
-    digitalWrite(PIN_POMPE, LOW);
-
-    pStopTimer.disable(TomatoController::pStopTimerId);
-}
