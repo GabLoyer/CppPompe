@@ -102,7 +102,7 @@ void setup() {
 
     nStopTimerId = pTimerArrosage.setInterval(Duree * NB_MS_IN_SECOND, StopArroser);
     pTimerArrosage.disable(nStopTimerId);
-    nStartTimerId = pTimerArrosage.setInterval(Interval * NB_MS_IN_MINUTE / 4, StartArroser);
+    nStartTimerId = pTimerArrosage.setInterval(Interval * NB_MS_IN_MINUTE, StartArroser);
 
     Serial.println("Setup the screen");
     pScreenManager = new ScreenManager();
@@ -139,7 +139,7 @@ void loop() {
 
     int indiceSoleil = lireCapteurSoleil();
 
-    if (indiceSoleil <= 49)
+    if (indiceSoleil < VAL_SOLEIL_NUIT)
     {
         bNuit = true;
         pScreenManager->ClearDisplay(false);
@@ -195,7 +195,7 @@ void loop() {
 int GetNextInterval()
 {
     int soleil = lireCapteurSoleil();
-    int interval = map(soleil, SOLEIL_MIN, SOLEIL_MAX, INTERVAL_MIN, INTERVAL_MAX);
+    int interval = map(soleil, SOLEIL_MIN, SOLEIL_MAX, INTERVAL_MAX, INTERVAL_MIN);
     interval = constrain(interval, INTERVAL_MIN, INTERVAL_MAX);
     return interval;
 }
@@ -218,7 +218,7 @@ void RecalculerIntervalEtDuree()
 
     nStopTimerId = pTimerArrosage.setInterval(Duree * NB_MS_IN_SECOND, StopArroser);
     pTimerArrosage.disable(nStopTimerId);
-    nStartTimerId = pTimerArrosage.setInterval(Interval * NB_MS_IN_MINUTE / 4, StartArroser);
+    nStartTimerId = pTimerArrosage.setInterval(Interval * NB_MS_IN_MINUTE, StartArroser);
 
     pTimerArrosage.disable(nStopTimerId);
     pTimerArrosage.enable(nStartTimerId);
