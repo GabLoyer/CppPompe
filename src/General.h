@@ -37,12 +37,12 @@
 
 #define SOLEIL_MAX 100      // Tier1 de l'interval pour le temp d'arrosage
 #define SOLEIL_MIN 60       // Tier2 de l'interval pour le temp d'arrosage
-#define INTERVAL_MIN 30     // En minutes, l'interval de temp qu'on arrose quand le soleil est max.
+#define INTERVAL_MIN 20     // En minutes, l'interval de temp qu'on arrose quand le soleil est max.
 #define INTERVAL_MAX 60     // En minutes, l'interval de temp qu'on arrose quand le soleil est min.
 
 // Define pour l'arrossage
 #define DUREE_ARROSAGE 60          // La Durée d'Arrosage en secondes
-#define INTERVAL_ARROSAGE 1        // L'intervalle entre chaque arrosage en minutes (Initial)
+#define INTERVAL_ARROSAGE 0.1        // L'intervalle entre chaque arrosage en minutes (Initial)
 
 //Define pour la conversion du temps
 #define NB_MS_IN_SECOND 1000              // Nombre de millisecondes dans une seconde
