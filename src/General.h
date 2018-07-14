@@ -19,6 +19,14 @@
 #define PIN_CAPTEUR 35
 #define PIN_PHOTO_RESISTANCE A1
 
+// Défini les pins pour modifier les valeurs des durees et intervalle
+#define PIN_SUBSTRACT 20
+#define PIN_ADD 21
+#define PIN_DUREE_MIN 22
+#define PIN_DUREE_MAX 23
+#define PIN_INTERVAL_MIN 24
+#define PIN_INTERVAL_MAX 25
+#define PIN_VAL_SOLEIL_NUIT 26
 
 #define cs   53 // Arduino-Pin an Display CS   
 #define dc   49  // Arduino-Pin an 
@@ -31,7 +39,7 @@
 // Define pour les mesures des capteurs
 #define TEMPERATURE_MIN 20
 #define TEMPERATURE_MAX 30  
-#define DUREE_MIN 90        // En secondes, on arrose ce temps quand la temperature est min.
+#define DUREE_MIN 60        // En secondes, on arrose ce temps quand la temperature est min.
 #define DUREE_MAX 150       // En secondes, on arroce ce temps quand la temperature est max.
 #define VAL_SOLEIL_NUIT 60  // Correspond a la valeur minimum de soleil avant l'arrosage.
 

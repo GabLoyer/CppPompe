@@ -14,6 +14,7 @@ dht11 DHT11;
 #define DHT11PIN 35
 
 SimpleTimer pTimerArrosage;
+ValueChanger pValueChanger;
 
 int nStopTimerId;
 int nStartTimerId;
@@ -28,7 +29,12 @@ char tempChar4[4];
 bool bEstEnTrainDArroser = false;
 int nbArrosage = 0;
 bool bNuit = false;
-//TFT TFTScreen = TFT(cs, dc, rst);
+
+long intervalMin 20     // En minutes, l'interval de temp qu'on arrose quand le soleil est max.
+long intervalMax 60     // En minutes, l'interval de temp qu'on arrose quand le soleil est min.
+long dureeMin 90        // En secondes, on arrose ce temps quand la temperature est min.
+long dureeMax 150       // En secondes, on arroce ce temps quand la temperature est max.
+long valSoleilNuit 60   // Correspond a la valeur minimum de soleil avant l'arrosage.
 
 void RecalculerIntervalEtDuree();
 
@@ -131,9 +137,10 @@ void setup() {
 
 
 void loop() {
-    
-    //TFTScreen.text("Sensor Value :\n ",0,0);
     pTimerArrosage.run();
+
+    // Verifier si on essaye de modifier des valeurs de duree ou d'interval.
+    pValueChanger.updateLoop()
 
     lireCapteurTemperature();
 
@@ -189,22 +196,22 @@ void loop() {
 
     //On attend une seconde avant de réappelé le système
     Serial.println("Finish loop, looping back in 2 sec..");
-    delay(2000);
+    delay(1000);
 }
 
 int GetNextInterval()
 {
     int soleil = lireCapteurSoleil();
-    int interval = map(soleil, SOLEIL_MIN, SOLEIL_MAX, INTERVAL_MAX, INTERVAL_MIN);
-    interval = constrain(interval, INTERVAL_MIN, INTERVAL_MAX);
+    int interval = map(soleil, SOLEIL_MIN, SOLEIL_MAX, intervalMax, intervalMin);
+    interval = constrain(interval, intervalMin, intervalMax);
     return interval;
 }
 
 int GetNextDuree()
 {
     int temperature = DHT11.temperature;
-    int duree = map(temperature, TEMPERATURE_MIN, TEMPERATURE_MAX, DUREE_MIN, DUREE_MAX);
-    duree = constrain(duree, DUREE_MIN, DUREE_MAX);
+    int duree = map(temperature, TEMPERATURE_MIN, TEMPERATURE_MAX, dureeMin, dureeMax);
+    duree = constrain(duree, dureeMin, dureeMax);
     return duree;
 }
 
